@@ -1,6 +1,6 @@
 trigger: none
 
-pool: Default
+pool: zelectric_pool
 
 variables:
   WORKING_DIRECTORY: "$(System.DefaultWorkingDirectory)/environments/dev"
