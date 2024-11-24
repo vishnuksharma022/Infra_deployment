@@ -4,11 +4,13 @@ module "rg" {
 }
 
 module "acr" {
-  source = "../../modules/azurerm-acr"
-  acrs   = var.dev_acrs
+  depends_on = [module.rg]
+  source     = "../../modules/azurerm-acr"
+  acrs       = var.dev_acrs
 }
 
 module "aks" {
-  source = "../../modules/azurerm-aks"
+  depends_on   = [module.rg]
+  source       = "../../modules/azurerm-aks"
   aks_clusters = var.dev_aks_clusters
 }
