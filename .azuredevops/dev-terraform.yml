@@ -1,0 +1,69 @@
+trigger: none
+
+pool: zelectric_pool
+
+variables:
+  WORKING_DIRECTORY: "$(System.DefaultWorkingDirectory)/environments/dev"
+  AZURE_CONNECTION: "zelectric-connection"
+  STORAGE_ACCOUNT_NAME: "mishrastg"
+  RESOURCE_GROUP_NAME: "mishra"
+  CONTAINER_NAME: "tfstate"
+  BACKEND_KEY: "dev.terraform.tfstate"
+
+stages:
+  - stage: TerraformInitAndPlan
+    displayName: Terraform Init and Plan
+    jobs:
+      - job: InitAndPlanJob
+        displayName: Init and Plan Job
+        steps:
+          - task: TerraformTaskV4@4
+            displayName: "Terraform Init"
+            inputs:
+              provider: "azurerm"
+              command: "init"
+              workingDirectory: $(WORKING_DIRECTORY)
+              backendServiceArm: $(AZURE_CONNECTION)
+              backendAzureRmResourceGroupName: $(RESOURCE_GROUP_NAME)
+              backendAzureRmStorageAccountName: $(STORAGE_ACCOUNT_NAME)
+              backendAzureRmContainerName: $(CONTAINER_NAME)
+              backendAzureRmKey: $(BACKEND_KEY)
+          - task: TerraformTaskV4@4
+            displayName: "Terraform Plan"
+            inputs:
+              provider: "azurerm"
+              command: "plan"
+              workingDirectory: $(WORKING_DIRECTORY)
+              environmentServiceNameAzureRM: $(AZURE_CONNECTION)
+  - stage: TerraformApply
+    displayName: Terraform Apply
+    condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+    jobs:
+      - job: ManualApprovalJob
+        displayName: Manual Approval Job
+        pool: server
+        steps:
+          - task: ManualValidation@1
+            inputs:
+              notifyUsers: "abc@abc.com"
+              instructions: "Please validate the plan and continue"
+      - job: TerraformApply
+        dependsOn: ManualApprovalJob
+        displayName: Terraform Apply
+        steps:
+          - task: TerraformTaskV4@4
+            inputs:
+              provider: "azurerm"
+              command: "init"
+              workingDirectory: $(WORKING_DIRECTORY)
+              backendServiceArm: $(AZURE_CONNECTION)
+              backendAzureRmResourceGroupName: $(RESOURCE_GROUP_NAME)
+              backendAzureRmStorageAccountName: $(STORAGE_ACCOUNT_NAME)
+              backendAzureRmContainerName: $(CONTAINER_NAME)
+              backendAzureRmKey: $(BACKEND_KEY)
+          - task: TerraformTaskV4@4
+            inputs:
+              provider: "azurerm"
+              command: "apply"
+              workingDirectory: $(WORKING_DIRECTORY)
+              environmentServiceNameAzureRM: $(AZURE_CONNECTION)
