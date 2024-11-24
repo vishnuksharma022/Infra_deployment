@@ -4,11 +4,11 @@ pool: Default
 
 variables:
   WORKING_DIRECTORY: "$(System.DefaultWorkingDirectory)/environments/dev"
-  AZURE_CONNECTION: ""
-  STORAGE_ACCOUNT_NAME: ""
-  RESOURCE_GROUP_NAME: ""
-  CONTAINER_NAME: ""
-  BACKEND_KEY: ""
+  AZURE_CONNECTION: "zelectric-connection"
+  STORAGE_ACCOUNT_NAME: "mishrastg"
+  RESOURCE_GROUP_NAME: "mishra"
+  CONTAINER_NAME: "tfstate"
+  BACKEND_KEY: "dev.terraform.tfstate"
 
 stages:
   - stage: TerraformInitAndPlan
