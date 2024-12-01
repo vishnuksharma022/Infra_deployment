@@ -6,8 +6,8 @@ pool: zelectric_pool
 variables:
   WORKING_DIRECTORY: "$(System.DefaultWorkingDirectory)/environments/dev"
   AZURE_CONNECTION: "new-connection"
-  STORAGE_ACCOUNT_NAME: "mishrastg"
-  RESOURCE_GROUP_NAME: "mishra"
+  STORAGE_ACCOUNT_NAME: "devopsstg143"
+  RESOURCE_GROUP_NAME: "testrg"
   CONTAINER_NAME: "tfstate"
   BACKEND_KEY: "dev.terraform.tfstate"
 
