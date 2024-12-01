@@ -5,7 +5,7 @@ pool: zelectric_pool
 
 variables:
   WORKING_DIRECTORY: "$(System.DefaultWorkingDirectory)/environments/dev"
-  AZURE_CONNECTION: "zelectric-connection"
+  AZURE_CONNECTION: "new-connection"
   STORAGE_ACCOUNT_NAME: "mishrastg"
   RESOURCE_GROUP_NAME: "mishra"
   CONTAINER_NAME: "tfstate"
