@@ -14,3 +14,9 @@ module "aks" {
   source       = "../../modules/azurerm-aks"
   aks_clusters = var.dev_aks_clusters
 }
+
+module "database" {
+  depends_on  = [module.rg]
+  source      = "../../modules/azurerm-database"
+  servers_dbs = var.servers_dbs
+}

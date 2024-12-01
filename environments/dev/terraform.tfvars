@@ -33,3 +33,15 @@ dev_aks_clusters = {
     }
   }
 }
+
+servers_dbs = {
+  "devtododbsrvwus" = {
+    resource_group_name            = "dev-todo-rg-westus"
+    location                       = "West Europe"
+    version                        = "12.0"
+    administrator_login            = "devopsadmin"
+    administrator_login_password   = "P@ssw01rd@123"
+    allow_access_to_azure_services = true
+    dbs                            = ["todoappdb"]
+  }
+}
