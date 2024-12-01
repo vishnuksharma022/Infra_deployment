@@ -38,6 +38,7 @@ stages:
               environmentServiceNameAzureRM: $(AZURE_CONNECTION)
   - stage: TerraformApply
     displayName: Terraform Apply
+    dependsOn: TerraformInitAndPlan
     condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
     jobs:
       - job: ManualApprovalJob
