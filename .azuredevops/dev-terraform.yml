@@ -5,7 +5,7 @@ pool: zelectric_pool
 
 variables:
   WORKING_DIRECTORY: "$(System.DefaultWorkingDirectory)/environments/dev"
-  AZURE_CONNECTION: "new-connection"
+  AZURE_CONNECTION: "test-c"
   STORAGE_ACCOUNT_NAME: "devopsstg143"
   RESOURCE_GROUP_NAME: "testrg"
   CONTAINER_NAME: "tfstate"
