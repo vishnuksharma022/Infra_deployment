@@ -35,7 +35,7 @@ dev_aks_clusters = {
 }
 
 servers_dbs = {
-  "devtododbsrvwus1" = {
+  "devtododbsrvwus2" = {
     resource_group_name            = "dev-todo-rg-westus"
     location                       = "Central India"
     version                        = "12.0"
