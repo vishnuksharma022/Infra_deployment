@@ -6,7 +6,7 @@ dev_rgs = {
 
 dev_acrs = {
   "acr1" = {
-    acr_name = "devtodoacrwestus1"
+    acr_name = "devtodoacrwestus2"
     rg_name  = "dev-todo-rg-westus"
     location = "West US"
     sku      = "Standard"
@@ -35,7 +35,7 @@ dev_aks_clusters = {
 }
 
 servers_dbs = {
-  "devtododbsrvwus2" = {
+  "devtododbsrvwus3" = {
     resource_group_name            = "dev-todo-rg-westus"
     location                       = "Central India"
     version                        = "12.0"
