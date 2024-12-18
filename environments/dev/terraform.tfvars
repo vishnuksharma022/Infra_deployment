@@ -6,7 +6,7 @@ dev_rgs = {
 
 dev_acrs = {
   "acr1" = {
-    acr_name = "devtodoacrwestus5"
+    acr_name = "devtodoacrwestus9"
     rg_name  = "dev-todo-rg-westus"
     location = "West US"
     sku      = "Standard"
